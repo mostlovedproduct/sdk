@@ -1,0 +1,7 @@
+# gitleaks configuration: the default rules, minus the fake secrets the redaction tests must catch.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Fake secrets in redaction test fixtures"
+paths = ['''packages/core/test/protocol/redact\.test\.ts''']

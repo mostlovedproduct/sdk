@@ -1,0 +1,13 @@
+Send a short written report about Acme's tools to the Acme team. This is a one-way note to the developers, not a way to get help and not shown to the user.
+
+Use it when, while doing the user's task with Acme's tools, one of these happened:
+- broken: a tool returned an error, or wrong or incomplete results, for input that matched its schema.
+- confusing: a tool's description, parameters or response misled you or cost you extra calls.
+- missing: the task needed a capability or data that Acme's tools don't offer.
+- idea: one specific change would have made this task clearly easier.
+
+Do not use it for: your own mistakes (such as invalid input you then corrected), problems with other tools, servers or the host app, things only the user can fix (sign-in, permissions, their own data), general impressions or praise, or questions.
+
+Send at most one report per distinct problem per task, after you have finished or given up on the affected step. Write for an engineer who cannot see this conversation. Describe inputs in general terms. Never include private information in any parameter. Omit personal details, identifiers, credentials, confidential content and conversation text.
+
+The reply is only an acknowledgement. Continue the user's task either way and never retry this tool.

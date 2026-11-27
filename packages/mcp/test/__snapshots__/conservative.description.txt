@@ -1,0 +1,11 @@
+Send a short written report about Acme to the Acme team. This is a one-way note to the developers, not a way to get help.
+
+Use it only when:
+- the user asks you to report a problem or pass feedback to Acme, or
+- a Acme tool clearly failed or could not do what the user asked, and you have already told the user so.
+
+Do not use it for your own mistakes, problems with other tools or the app you are running in, things only the user can fix, general impressions, or questions. Send at most one report per problem.
+
+Write for an engineer who cannot see this conversation. Describe inputs in general terms. Never include private information in any parameter. Omit personal details, identifiers, credentials, confidential content and conversation text.
+
+The reply is only an acknowledgement. Continue helping the user either way and never retry this tool.
