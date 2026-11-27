@@ -1,7 +1,8 @@
 name: Release
 
-# Publishes the three packages when a v<version> tag is pushed. Versions already on npm are
-# skipped, so a failed run can be re-run.
+# Stages the three packages on npm when a v<version> tag is pushed. Nothing goes live until a
+# maintainer approves each staged version with 2FA on npmjs.com (Staged Packages) or with
+# `npm stage approve`. Versions already published are skipped, so a failed run can be re-run.
 on:
   push:
     tags: ["v*"]
@@ -11,22 +12,25 @@ permissions:
   id-token: write # npm trusted publishing and provenance
 
 jobs:
-  publish:
+  stage:
     runs-on: ubuntu-latest
     environment: npm # requires approval before it runs
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
           registry-url: https://registry.npmjs.org
-      - run: npm install -g npm@11 # trusted publishing needs npm 11.5.1 or later
+          package-manager-cache: false # never restore a cache into a release build
+      - run: npm install -g npm@^11.15.0 # npm stage publish needs 11.15.0 or later
       - run: npm ci
       - name: Check the tag matches the package version
         run: test "v$(node -p 'require("./packages/core/package.json").version')" = "$GITHUB_REF_NAME"
       - run: npm test
       - run: npm run typecheck
-      - name: Publish core, then mcp and web
+      - name: Stage core, then mcp and web
         run: |
           for dir in core mcp web; do
             name=$(node -p "require('./packages/$dir/package.json').name")
@@ -35,8 +39,5 @@ jobs:
               echo "$name@$version is already on npm"
               continue
             fi
-            npm publish --workspace "packages/$dir" --provenance --access public
+            (cd "packages/$dir" && npm stage publish)
           done
-        env:
-          # Only for the first release, before each package has a trusted publisher. Remove it then.
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
