@@ -1,0 +1,24 @@
+{
+  "name": "mostlovedproduct-sdk",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "packages/core",
+    "packages/mcp",
+    "packages/web"
+  ],
+  "scripts": {
+    "build:core": "npm run build -w @mostlovedproduct/core",
+    "build": "npm run build:core && npm run build -w @mostlovedproduct/mcp -w @mostlovedproduct/web",
+    "typecheck": "npm run build:core && npm run typecheck -w @mostlovedproduct/core -w @mostlovedproduct/mcp -w @mostlovedproduct/web",
+    "test": "npm run build:core && npm test -w @mostlovedproduct/core -w @mostlovedproduct/mcp -w @mostlovedproduct/web && npm run check:packages",
+    "check:packages": "npm run build && node scripts/check-packages.mjs"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

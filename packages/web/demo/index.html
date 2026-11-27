@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ridge &amp; Roast · widget demo</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self' http://localhost:8787; img-src 'self' data:">
+<link rel="stylesheet" href="/demo/host.css">
+<script src="/demo/mock.js"></script>
+<script src="/demo/demo.js"></script>
+<!-- The only line a customer really needs (plus a key). data-* covers zero-JS setups. -->
+<script async src="/dist/mlp.js" data-position="bottom-right" data-app-version="2.4.1"></script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/">Ridge &amp; Roast</a>
+  <nav>
+    <a href="#shop">Shop</a>
+    <a href="#guide">Brewing guide</a>
+    <a href="#" data-mlp-feedback data-mlp-kind="idea" data-mlp-subject="Navigation">Suggest a feature</a>
+  </nav>
+  <div class="actions">
+    <button id="theme-toggle" class="ghost" type="button" aria-pressed="false">Dark mode</button>
+    <span class="cart">Cart <b id="cart-count">0</b></span>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <p class="eyebrow">Fresh this week</p>
+    <h1>Single-origin coffee, roasted on Mondays.</h1>
+    <p class="lede">This is a stand-in host page. The floating <strong>Feedback</strong> button in the corner is the default widget; everything below shows another way to use it.</p>
+    <p class="mode" id="mode"></p>
+  </section>
+
+  <section id="shop" class="grid">
+    <article class="card product">
+      <div class="swatch s1"></div>
+      <h3>Huila, Colombia</h3>
+      <p>Red apple, panela, cocoa. Washed.</p>
+      <div class="row"><span class="price">$18</span><button class="btn" data-add="huila-250" data-price="18" type="button">Add to cart</button></div>
+    </article>
+    <article class="card product">
+      <div class="swatch s2"></div>
+      <h3>Guji, Ethiopia</h3>
+      <p>Bergamot, peach, jasmine. Natural.</p>
+      <div class="row"><span class="price">$21</span><button class="btn" data-add="guji-250" data-price="21" type="button">Add to cart</button></div>
+    </article>
+    <article class="card product">
+      <div class="swatch s3"></div>
+      <h3>Cerrado, Brazil</h3>
+      <p>Hazelnut, milk chocolate. Pulped natural.</p>
+      <div class="row"><span class="price">$16</span><button class="btn" data-add="cerrado-250" data-price="16" type="button">Add to cart</button></div>
+    </article>
+  </section>
+
+  <section class="demo">
+    <div class="card">
+      <h2>1 · Default look</h2>
+      <p>Inherits this page's font and follows its light/dark background. Try the <em>Dark mode</em> toggle, then open it.</p>
+      <p class="hint">Bottom-right corner. Kind chips, one textarea, up to two follow-ups.</p>
+    </div>
+    <div class="card">
+      <h2>2 · Themed variant</h2>
+      <p>A second instance with a <code>theme</code> object, custom strings and a subset of kinds.</p>
+      <button id="open-themed" class="btn" type="button">Suggest a roast</button>
+    </div>
+    <div class="card">
+      <h2>3 · Your own triggers</h2>
+      <p><code>attach('#report-bug', { kind: 'broken' })</code> and a declarative <code>data-mlp-feedback</code> link in the header.</p>
+      <button id="report-bug" class="btn outline" type="button">Report a checkout bug</button>
+    </div>
+    <div class="card wide">
+      <h2>4 · Context injection</h2>
+      <p>User <code>usr_8f3a2c</code> (pro), flags <code>checkout_v2</code> + <code>pricing_page=variant_b</code>, app <code>2.4.1</code> from <code>data-app-version</code>, and <code>getContext()</code> reading the live cart. Add something to the cart, then send feedback: the report as sent appears here (from <code>beforeSend</code>).</p>
+      <div class="split">
+        <pre id="payload">(nothing sent yet)</pre>
+        <div><h3>Hooks</h3><ul id="events" class="events"></ul></div>
+      </div>
+    </div>
+    <div class="card wide" id="guide">
+      <h2>5 · Headless</h2>
+      <p>Same controller, no default UI: a custom inline "was this helpful?" block.</p>
+      <div id="headless" class="headless">
+        <p class="q">Was this brewing guide helpful?</p>
+        <div class="row left">
+          <button class="chip" type="button" data-helpful="yes">Yes</button>
+          <button class="chip" type="button" data-helpful="no">Not really</button>
+        </div>
+        <div data-compose hidden>
+          <label class="sr" for="hl-text">Tell us more</label>
+          <textarea id="hl-text" rows="3" placeholder="Tell us more (optional detail helps)"></textarea>
+          <button class="btn" data-send type="button">Send</button>
+        </div>
+        <p data-status class="status" aria-live="polite"></p>
+        <p data-question class="q small"></p>
+        <div data-options class="row left"></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="foot">Demo host page · <code>?mock=1</code> stubs the intake API · <code>?key=…</code> uses a real dev key</footer>
+</body>
+</html>

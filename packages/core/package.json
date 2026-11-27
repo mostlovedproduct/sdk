@@ -1,0 +1,61 @@
+{
+  "name": "@mostlovedproduct/core",
+  "version": "0.1.0",
+  "description": "Feedback capture client and wire protocol.",
+  "keywords": [
+    "feedback",
+    "capture",
+    "mcp",
+    "agents",
+    "redaction",
+    "most-loved-product"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "license": "MIT",
+  "author": "Bearden Technologies Inc. (https://mostlovedproduct.com)",
+  "homepage": "https://mostlovedproduct.com/docs/api",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mostlovedproduct/sdk.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/mostlovedproduct/sdk/issues"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./lite": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./protocol": {
+      "types": "./dist/protocol.d.ts",
+      "import": "./dist/protocol.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "tsup": "^9.0.0",
+    "typescript": "5.9.3",
+    "vitest": "^4.1.12"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}

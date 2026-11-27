@@ -1,0 +1,9 @@
+kind: Which of the four cases this is. Pick the closest one.
+summary: One sentence an engineer could use as an issue title. Name the tool and the symptom. Good: 'search_orders returns an empty list when status is "refunded"'. Bad: 'search doesn't work'. Omit private information.
+goal: What the user was trying to accomplish with Acme's tools. Paraphrase in one general sentence and omit private information.
+impact: blocked: could not complete the step. worked_around: completed it another way. friction: completed it, but it cost extra calls or guesses.
+tool: Use only the registered Acme tool name. Omit it if none applies or the name contains private information.
+actual: For a broken tool, summarize the error or the shape of the result. Omit private information and avoid pasting raw messages or output.
+expected: Describe the expected result in general terms, without private information.
+suggestion: Suggest the smallest change that would have helped, if you have one. Omit private information.
+requested_by_user: True only if the user explicitly asked you to send this feedback.
